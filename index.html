@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,7 +25,7 @@
 <lightning-out-application frontdoor-url="https://orgfarm-75ae203ac7-dev-ed.develop.my.salesforce.com/secur/frontdoor.jsp?otp=00Dfj00000GQY6V%21AQEAQJohTcptPbv9uaJ2tqljv5uoz2RnZkEIBmxJPpgKEqfqXvR72wsQLfJDvIu3V.DrkuWXz4tAcI3a0eDvlTrvkJVS1WBu&cshc=j00000AY3wzj00000GQY6V" app-id="1Usfj00000008aHCAQ" components="c-sampledatatable"></lightning-out-application>
 <c-sampledatatable></c-sampledatatable>
 
-<!-- <script type='text/javascript'>
+<script type='text/javascript'>
 	function initEmbeddedMessaging() {
 		try {
 			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
@@ -43,8 +43,250 @@
 		}
 	};
 </script>
-<script type='text/javascript' src='https://az-agentforce-dev-ed.develop.my.site.com/ESWGithubMessagingSetti1768837956313/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script> -->
+<script type='text/javascript' src='https://az-agentforce-dev-ed.develop.my.site.com/ESWGithubMessagingSetti1768837956313/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
 
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lightning Out 2.0 - Sample Data Table</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+        }
+        .loading {
+            color: #0070d2;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lightning Out 2.0 Test</h1>
+    <div id="status" class="loading">Initializing...</div>
+
+    <div id="lightningContainer">
+        <script type="text/javascript" async=""
+            src="https://orgfarm-52bbf7be19-dev-ed.develop.my.salesforce.com/lightning/lightning.out.latest/index.iife.prod.js"></script>
+        
+        <lightning-out-application id="lightningApp" frontdoor-url="" app-id="1Usg500000005XZCAY" components="c-sampledatatable">
+        </lightning-out-application>
+        <c-sampledatatable></c-sampledatatable>
+    </div>
+
+    <!-- Include jsrsasign library for JWT signing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/11.1.0/jsrsasign-all-min.js"></script>
+
+    <script>
+        // Configuration
+        const SF_CONFIG = {
+            instanceUrl: 'https://orgfarm-52bbf7be19-dev-ed.develop.my.salesforce.com',
+            clientId: '3MVG97L7PWbPq6UyYr0G3Bfb76Cz6a7hrWfZP1DWkUU9_TJH.ctwXFiC3IWs6xxKThJr2oco9o.c77v_3Iu5L',
+            username: 'karthiksekar2612.0d68cdc983f4@agentforce.com',
+            appId: '1Usg500000005XZCAY',
+            // IMPORTANT: In production, this should be done server-side!
+            // Never expose private keys in client-side code
+            privateKey: `-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCURi7enqdthoDz
+su8wFELCAWumXj5kq7i55RZ4qlPbluEVQkPY1efJzy0HdXvvYD2Ez5jVzdMLayd3
+XRGWuw/lfRTHvV044BbPLjaI6fg3C3ZFQ7UNdWqJFlQbtqGrFL7lagL1c6MBpmJM
+ovzg88FOwveyEbG/DM/WNPwG5/GcQzTR3+iJO0F1QeFDlgkKBzG19mmh0Uaxnedx
+bmKqbEzQEqz2/bbiJJQs+hBiwL1Kl9QXtj4BvPCM7J//F2xRZEe8vf5sgnFg0c8h
+/Ah2dh+JDjzfqz9xZxja76/u/tVxRodF0O+168D2iEzIduR2tZ/V4jZi+laFVx3C
+AcyxTyqXAgMBAAECggEAIPg0Hss/ZmK0lLuyZMn0iCgBtFYbYI4wfqFabE1PZTH4
+7Z208Weq6RxYomJ0wubu9vOkQ9JG/bB/b5KxwQbqQ3ibIMjSDD4DxGC9vpbr2u2B
+CGjEPvBfVokw/ZKQAzcTNXbrnoFuewTwsaLCQRDiaG2A30cA837ZTgOtEKoNdtXC
+KaqFL+Do9I1hOKcaxWx1ONLIpnh2mRJ/XIpjj58ALhebhmLgin/iz9Ra3CEH2FeW
+Z/NyaGvWfmVSgzj3tRWY1Q52yFieleBLf4CiqN26gPo4uB6Ww2coXAbGXjWJlXef
+8DR1/g6hYAyaiffwj4jrVpGbWRRuifg3ncJG1n9IhQKBgQDC7CyrDCIAw2ikL1z9
+or3REO9/wMAtPS8ntQeuL2k694qufy7uZmcvkaVmcg1SC3nP/SM12z8B6o+9DzOz
+kCbpPjmtlXMsAJcPd0mdE81Bg7/qbG/QaNOOi3wrrBE6qi52YHRGfDijl7rnG4RV
+v9cNl2JjZPx0zfJs0ej0EgGDmwKBgQDCvBR13TC1QTExhOTc+zVW48uE1g8Rtz1Q
+zmu+uxr2+9YmJxip8dim629Rpae19DGZaG0z+7GOJnsxFaafrTLmg/ChSMQVgUaX
+XvG6s66hsxz7Eq96EODXOceRxWBFLkfnTKsfQE/Fy0NweCzzZuc79B7EIH0y6hIS
+Cq/lsAQ6tQKBgAP4eaR2V876LAyEJnnIMeOrW6WXkJKbV3WQm3px3svjtQB++L7E
+eT+f0OW4Vwsfzrhs6KW1NKBeXdU1FRGIUzKXIOenTrRLwsf+3xIDEEBQZb1pvhFZ
+wU17C+l71NIEG3Qv3M5+w0yZz6XbiqOQh9nwBoIN0ZKzi0eqMvudzkgXAoGBAI0Y
+c4a23nzmIHutu5m11n7/jE3SP5bpet7awcyviykbbZ21RDSWjBDdk4nICk1XAr0R
+odZBbvP9Q9NbyZ/2gWPug2KI87JVOc2huGo7mLOGsN/mOQirxA2NyuD+7vMRRn37
+2h1JnsNEtLeAC6nMjIyvI7+dfrluSeuSnMJCl73lAoGBALF6hz3scxUs5jyTTdkU
+ZnGLxPD/U1FMmwrxCDIAGL2bWci82KBTvvKaPAjBJL4neJf+HS+g93kIIKCGfEmh
+hyKCMXd+f51bdr28XcdUoIbtPyzUTr1K1m/nOdqtLw2SKwgOtsm1BtJuFkrM2AXy
+ogFUphfJE9IyhjOy1TEpZUPu
+-----END PRIVATE KEY-----
+`
+        };
+
+        const statusDiv = document.getElementById('status');
+
+        function updateStatus(message, type = 'loading') {
+            statusDiv.textContent = message;
+            statusDiv.className = type;
+        }
+
+        // Step 1: Build and sign JWT
+        function buildJWT() {
+            try {
+                const header = {
+                    alg: 'RS256',
+                    typ: 'JWT'
+                };
+
+                const now = Math.floor(Date.now() / 1000);
+                const claims = {
+                    iss: SF_CONFIG.clientId,
+                    sub: SF_CONFIG.username,
+                    aud: SF_CONFIG.instanceUrl,
+                    exp: now + (5 * 60) // 5 minutes from now
+                };
+
+                // Create JWT using jsrsasign
+                const sHeader = JSON.stringify(header);
+                const sPayload = JSON.stringify(claims);
+                const sJWT = KJUR.jws.JWS.sign('RS256', sHeader, sPayload, SF_CONFIG.privateKey);
+                
+                return sJWT;
+            } catch (error) {
+                console.error('Error building JWT:', error);
+                throw error;
+            }
+        }
+
+        // Step 2: Exchange JWT for access token
+        async function getAccessToken(jwt) {
+            updateStatus('Exchanging JWT for access token...');
+            
+            const tokenUrl = `${SF_CONFIG.instanceUrl}/services/oauth2/token`;
+            const body = new URLSearchParams({
+                grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+                assertion: jwt
+            });
+
+            try {
+                const response = await fetch(tokenUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: body.toString()
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Token request failed: ${response.status} - ${errorText}`);
+                }
+
+                const data = await response.json();
+                console.log('Access token obtained:', data);
+                return data.access_token;
+            } catch (error) {
+                console.error('Error getting access token:', error);
+                throw error;
+            }
+        }
+
+        // Step 3: Get frontdoor URL
+        async function getFrontdoorUrl(accessToken) {
+            updateStatus('Getting frontdoor URL...');
+            
+            const frontdoorUrl = `${SF_CONFIG.instanceUrl}/services/oauth2/lightningoutsingleaccess`;
+            const body = new URLSearchParams({
+                access_token: accessToken,
+                lightning_out_app_id: SF_CONFIG.appId
+            });
+
+            try {
+                const response = await fetch(frontdoorUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: body.toString()
+                });
+
+                console.log('Frontdoor response status:', response.status);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Frontdoor request failed: ${response.status} - ${errorText}`);
+                }
+
+                const data = await response.json();
+                console.log('Frontdoor URL obtained:', data);
+                return data.frontdoor_uri;
+            } catch (error) {
+                console.error('Error getting frontdoor URL:', error);
+                throw error;
+            }
+        }
+
+        // Step 4: Set frontdoor URL and initialize Lightning Out
+        function initializeLightningOut(frontdoorUrl) {
+            updateStatus('Setting frontdoor URL and initializing component...');
+            
+            const lightningApp = document.getElementById('lightningApp');
+            lightningApp.setAttribute('frontdoor-url', frontdoorUrl);
+            
+            console.log('Frontdoor URL set:', frontdoorUrl);
+            updateStatus('Lightning Out component initialized successfully!', 'success');
+        }
+
+        // Main initialization flow
+        async function initialize() {
+            try {
+                updateStatus('Starting authentication flow...');
+                
+                // Build JWT
+                updateStatus('Building JWT assertion...');
+                const jwt = buildJWT();
+                console.log('JWT created');
+                
+                // Get access token
+                const accessToken = await getAccessToken(jwt);
+                
+                // Get frontdoor URL
+                const frontdoorUrl = await getFrontdoorUrl(accessToken);
+                
+                // Initialize Lightning Out with frontdoor URL
+                initializeLightningOut(frontdoorUrl);
+                
+            } catch (error) {
+                console.error('Initialization error:', error);
+                updateStatus(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Start the flow when page loads
+        window.addEventListener('load', () => {
+            // Check if private key is configured
+            if (SF_CONFIG.privateKey.includes('YOUR_PRIVATE_KEY_HERE')) {
+                updateStatus('Error: Private key not configured. Please add your private key to SF_CONFIG.', 'error');
+                console.error('IMPORTANT: Add your private key to SF_CONFIG. In production, this should be done server-side!');
+            } else {
+                initialize();
+            }
+        });
+    </script>
+</body>
+
 </html>
