@@ -89,9 +89,7 @@
         src="https://orgfarm-52bbf7be19-dev-ed.develop.my.salesforce.com/lightning/lightning.out.latest/index.iife.prod.js"></script>
     
     <div id="lightningContainer">
-        <lightning-out-application id="lightningApp" frontdoor-url="" app-id="1Usg500000005XZCAY" components="c-sampledatatable">
-            <c-sampledatatable></c-sampledatatable>
-        </lightning-out-application>
+        <!-- Lightning component will be inserted here after authentication -->
     </div>
 
     <!-- Include jsrsasign library for JWT signing -->
@@ -244,8 +242,16 @@ ogFUphfJE9IyhjOy1TEpZUPu
         function initializeLightningOut(frontdoorUrl) {
             updateStatus('Setting frontdoor URL and initializing component...');
             
-            const lightningApp = document.getElementById('lightningApp');
+            // Create the lightning-out-application element with frontdoor URL already set
+            const lightningApp = document.createElement('lightning-out-application');
+            lightningApp.id = 'lightningApp';
             lightningApp.setAttribute('frontdoor-url', frontdoorUrl);
+            lightningApp.setAttribute('app-id', SF_CONFIG.appId);
+            lightningApp.setAttribute('components', 'c-sampledatatable');
+            
+            // Add it to the DOM
+            const container = document.getElementById('lightningContainer');
+            container.appendChild(lightningApp);
             
             console.log('Frontdoor URL set:', frontdoorUrl);
             updateStatus('Lightning Out component initialized successfully!', 'success');
