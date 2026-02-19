@@ -85,13 +85,13 @@
     <h1>Lightning Out 2.0 Test</h1>
     <div id="status" class="loading">Initializing...</div>
 
+    <script type="text/javascript" async=""
+        src="https://orgfarm-52bbf7be19-dev-ed.develop.my.salesforce.com/lightning/lightning.out.latest/index.iife.prod.js"></script>
+    
     <div id="lightningContainer">
-        <script type="text/javascript" async=""
-            src="https://orgfarm-52bbf7be19-dev-ed.develop.my.salesforce.com/lightning/lightning.out.latest/index.iife.prod.js"></script>
-        
         <lightning-out-application id="lightningApp" frontdoor-url="" app-id="1Usg500000005XZCAY" components="c-sampledatatable">
+            <c-sampledatatable></c-sampledatatable>
         </lightning-out-application>
-        <c-sampledatatable></c-sampledatatable>
     </div>
 
     <!-- Include jsrsasign library for JWT signing -->
